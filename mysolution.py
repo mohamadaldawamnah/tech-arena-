@@ -17,7 +17,7 @@ seeds = known_seeds('training')
 
 demand = pd.read_csv('./data/demand.csv')
 
-for seed in seeds[:1]:
+for seed in seeds:
     # SET THE RANDOM SEED
     np.random.seed(seed)
 
