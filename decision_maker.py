@@ -87,6 +87,8 @@ class DecisionMaker(object):
         capacity = fleet.calc_server_capacity(action)
         dc_latency = fleet.get_dc_latency(action)
         demand = self.demand.get_ts_demand(fleet.timestep)[action.server_generation][dc_latency]
+        # the demand needs reworking because it gives demand to a latency and not a specific datacenter
+        # fix: get all capacities of dcs with that latency and then subtract from the demand the capacity of other dcs
         unsatisfied_demand = max(0,demand - capacity)
         satisfied_demand = min(unsatisfied_demand, server_capacity)
         # print(f"ts: {fleet.timestep}, demand: {demand}")
